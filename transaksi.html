@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Transaksi - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/transaksi.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <main class="transaction-page">
+    <header class="transaction-header">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <div>
+          <h1>Luxora POS</h1>
+          <p>Transaction Center</p>
+        </div>
+      </a>
+
+      <div class="header-title">
+        <p>Sales History</p>
+        <h2>Riwayat Transaksi</h2>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <a href="dashboard.html" class="header-link">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </a>
+
+        <a href="kasir.html" class="header-link">
+          <i data-lucide="shopping-cart"></i>
+          Kasir
+        </a>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">TRANSACTION CENTER</p>
+        <h1>Pantau semua transaksi penjualan toko dalam satu halaman.</h1>
+        <span>
+          Lihat riwayat transaksi, detail belanja, metode pembayaran, kasir yang melayani,
+          dan cetak ulang struk kapan saja.
+        </span>
+      </div>
+
+      <a href="kasir.html" class="hero-btn">
+        <i data-lucide="shopping-cart"></i>
+        Buat Transaksi
+      </a>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-icon gold">
+          <i data-lucide="receipt-text"></i>
+        </div>
+        <p>Total Transaksi</p>
+        <h3 id="totalTransactions">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon green">
+          <i data-lucide="wallet"></i>
+        </div>
+        <p>Omzet Hari Ini</p>
+        <h3 id="todayRevenue">Rp0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon blue">
+          <i data-lucide="package-check"></i>
+        </div>
+        <p>Item Terjual</p>
+        <h3 id="totalItemsSold">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon purple">
+          <i data-lucide="credit-card"></i>
+        </div>
+        <p>Metode Terbanyak</p>
+        <h3 id="topPaymentMethod">-</h3>
+      </article>
+    </section>
+
+    <section class="transaction-tools">
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input
+          id="transactionSearch"
+          type="text"
+          placeholder="Cari nomor nota pelanggan atau kasir"
+        >
+      </div>
+
+      <input id="dateFilter" type="date">
+
+      <select id="methodFilter">
+        <option value="all">Semua Metode</option>
+        <option value="Tunai">Tunai</option>
+        <option value="QRIS">QRIS</option>
+        <option value="Transfer">Transfer</option>
+      </select>
+
+      <button class="reset-filter-btn" id="resetFilterBtn" type="button">
+        <i data-lucide="rotate-ccw"></i>
+        Reset
+      </button>
+    </section>
+
+    <section class="transaction-panel">
+      <div class="panel-head">
+        <div>
+          <p>Transaction List</p>
+          <h3>Daftar Transaksi</h3>
+        </div>
+
+        <span id="transactionCountText">0 Transaksi</span>
+      </div>
+
+      <div class="transaction-list" id="transactionList">
+        <div class="empty-state">
+          <i data-lucide="receipt-text"></i>
+          <h3>Belum ada transaksi</h3>
+          <p>Transaksi dari halaman kasir akan otomatis muncul di sini.</p>
+          <a href="kasir.html">Buka Kasir</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="detail-modal" id="detailModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="detail-panel">
+      <button class="close-modal" id="closeDetailBtn" type="button">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="detail-head">
+        <p>Transaction Detail</p>
+        <h3>Detail Transaksi</h3>
+        <span id="detailCode">-</span>
+      </div>
+
+      <div class="detail-info">
+        <div>
+          <span>Tanggal</span>
+          <strong id="detailDate">-</strong>
+        </div>
+
+        <div>
+          <span>Kasir</span>
+          <strong id="detailCashier">-</strong>
+        </div>
+
+        <div>
+          <span>Pelanggan</span>
+          <strong id="detailCustomer">-</strong>
+        </div>
+
+        <div>
+          <span>Metode</span>
+          <strong id="detailMethod">-</strong>
+        </div>
+      </div>
+
+      <div class="detail-items" id="detailItems"></div>
+
+      <div class="detail-summary">
+        <div>
+          <span>Subtotal</span>
+          <strong id="detailSubtotal">Rp0</strong>
+        </div>
+
+        <div>
+          <span>Diskon</span>
+          <strong id="detailDiscount">Rp0</strong>
+        </div>
+
+        <div>
+          <span>Pajak</span>
+          <strong id="detailTax">Rp0</strong>
+        </div>
+
+        <div class="grand">
+          <span>Total</span>
+          <strong id="detailGrandTotal">Rp0</strong>
+        </div>
+
+        <div>
+          <span>Bayar</span>
+          <strong id="detailPaid">Rp0</strong>
+        </div>
+
+        <div>
+          <span>Kembalian</span>
+          <strong id="detailChange">Rp0</strong>
+        </div>
+      </div>
+
+      <div class="detail-actions">
+        <button class="delete-btn" id="deleteTransactionBtn" type="button">
+          <i data-lucide="trash-2"></i>
+          Hapus
+        </button>
+
+        <button class="print-btn" id="printTransactionBtn" type="button">
+          <i data-lucide="printer"></i>
+          Cetak Ulang Struk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="printArea"></div>
+
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle"></i>
+    <span>Berhasil.</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/transaksi.js"></script>
+</body>
+</html>

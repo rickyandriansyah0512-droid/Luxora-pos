@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dashboard - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <aside class="sidebar">
+    <a href="dashboard.html" class="brand">
+      <img src="assets/luxora-logo.png" alt="Luxora POS">
+      <div>
+        <h1>Luxora POS</h1>
+        <p data-i18n="brand_subtitle">Smart Cashier System</p>
+      </div>
+    </a>
+
+    <nav class="side-menu">
+      <a href="dashboard.html" class="side-link active">
+        <i data-lucide="layout-dashboard"></i>
+        <span data-i18n="menu_dashboard">Dashboard</span>
+      </a>
+
+      <a href="kasir.html" class="side-link">
+        <i data-lucide="shopping-cart"></i>
+        <span data-i18n="menu_cashier">Kasir</span>
+      </a>
+
+      <a href="produk.html" class="side-link">
+        <i data-lucide="package"></i>
+        <span data-i18n="menu_products">Produk</span>
+      </a>
+
+      <a href="transaksi.html" class="side-link">
+        <i data-lucide="receipt-text"></i>
+        <span data-i18n="menu_transactions">Transaksi</span>
+      </a>
+
+      <a href="laporan.html" class="side-link">
+        <i data-lucide="bar-chart-3"></i>
+        <span data-i18n="menu_reports">Laporan</span>
+      </a>
+
+      <a href="karyawan.html" class="side-link">
+  <i data-lucide="users-round"></i>
+  <span data-i18n="menu_employees">Karyawan</span>
+</a>
+
+      <a href="pengaturan.html" class="side-link">
+        <i data-lucide="settings"></i>
+        <span data-i18n="menu_settings">Pengaturan</span>
+      </a>
+    </nav>
+
+    <div class="premium-card">
+      <div class="premium-icon">
+        <i data-lucide="crown"></i>
+      </div>
+
+      <h3 data-i18n="premium_card_title">Luxora Premium</h3>
+
+      <p data-i18n="premium_card_desc">
+        Buka fitur laporan lengkap, multi kasir, export data, dan struk custom.
+      </p>
+
+      <a href="premium.html" data-i18n="upgrade_premium">
+        Upgrade Premium
+      </a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">
+        <p data-i18n="dashboard_label">Dashboard</p>
+        <h2 data-i18n="welcome_back">Selamat datang kembali 👋</h2>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="themeToggle" type="button" title="Ganti tema">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <button class="icon-btn" id="notificationBtn" type="button" title="Notifikasi">
+          <i data-lucide="bell"></i>
+          <span>3</span>
+        </button>
+
+        <a
+          class="icon-btn help-btn"
+          href="https://wa.me/6285179972565?text=Halo%20RANEX%20Service%20saya%20butuh%20bantuan%20Luxora%20POS"
+          target="_blank"
+          title="Pusat Bantuan RANEX Service"
+        >
+          <i data-lucide="headphones"></i>
+        </a>
+
+        <button class="user-chip" id="userMenuBtn" type="button">
+          <div class="user-photo" id="userPhoto">R</div>
+
+          <div>
+            <strong id="userName">User</strong>
+            <small id="userEmail">user@email.com</small>
+          </div>
+
+          <i data-lucide="chevron-down"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="dropdown notification-dropdown" id="notificationDropdown">
+      <div class="dropdown-head">
+        <strong data-i18n="notif_title">Notifikasi</strong>
+        <small data-i18n="notif_new">3 baru</small>
+      </div>
+
+      <div class="notif-item">
+        <i data-lucide="crown"></i>
+        <div>
+          <strong data-i18n="notif_premium_title">Promo Premium</strong>
+          <p data-i18n="notif_premium_desc">
+            Dapatkan fitur laporan lengkap dan multi kasir.
+          </p>
+        </div>
+      </div>
+
+      <div class="notif-item">
+        <i data-lucide="triangle-alert"></i>
+        <div>
+          <strong data-i18n="notif_stock_title">Stok Menipis</strong>
+          <p data-i18n="notif_stock_desc">
+            Cek produk yang perlu segera di-restock.
+          </p>
+        </div>
+      </div>
+
+      <div class="notif-item">
+        <i data-lucide="headphones"></i>
+        <div>
+          <strong data-i18n="notif_help_title">Bantuan Live Chat</strong>
+          <p data-i18n="notif_help_desc">
+            Hubungi RANEX Service jika butuh bantuan.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown user-dropdown" id="userDropdown">
+      <div class="user-dropdown-head">
+        <div class="user-photo small" id="dropdownPhoto">R</div>
+
+        <div>
+          <strong id="dropdownName">User</strong>
+          <small id="dropdownEmail">user@email.com</small>
+        </div>
+      </div>
+
+      <div class="language-box">
+        <button type="button" class="language-main" id="languageBtn">
+          <i data-lucide="languages"></i>
+          <span data-i18n="change_language">Ubah Bahasa</span>
+        </button>
+
+        <div class="language-options" id="languageOptions">
+          <button type="button" data-lang="id">Indonesia</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="zh">Mandarin / China</button>
+          <button type="button" data-lang="ja">Japan</button>
+          <button type="button" data-lang="ko">Korea</button>
+        </div>
+      </div>
+
+      <button type="button" id="logoutBtn" class="danger">
+        <i data-lucide="log-out"></i>
+        <span data-i18n="logout">Keluar</span>
+      </button>
+    </div>
+        <section class="hero-card">
+      <div>
+        <p class="eyebrow" data-i18n="hero_eyebrow">RINGKASAN TOKO</p>
+
+        <h1 data-i18n="hero_title">
+          Kelola penjualan lebih mudah dengan Luxora POS
+        </h1>
+
+        <span data-i18n="hero_desc">
+          Mulai transaksi, pantau produk, cek stok, dan tingkatkan fitur bisnis lewat paket premium.
+        </span>
+
+        <div class="hero-actions">
+          <a href="kasir.html" class="primary-btn">
+            <i data-lucide="shopping-cart"></i>
+            <span data-i18n="open_cashier">Buka Kasir</span>
+          </a>
+
+          <a href="premium.html" class="secondary-btn">
+            <span data-i18n="see_premium">Lihat Premium</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-badge">
+        <i data-lucide="sparkles"></i>
+        <strong data-i18n="free_plan">Free Plan</strong>
+        <span data-i18n="free_plan_desc">Upgrade untuk fitur lengkap</span>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-icon green">
+          <i data-lucide="wallet"></i>
+        </div>
+
+        <p data-i18n="stat_revenue">Omzet Hari Ini</p>
+        <h3 id="todayRevenue">Rp0</h3>
+        <span data-i18n="stat_revenue_desc">Update dari transaksi kasir</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon blue">
+          <i data-lucide="receipt-text"></i>
+        </div>
+
+        <p data-i18n="stat_transactions">Transaksi</p>
+        <h3 id="todayTransactions">0</h3>
+        <span data-i18n="stat_transactions_desc">Total transaksi hari ini</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon purple">
+          <i data-lucide="package"></i>
+        </div>
+
+        <p data-i18n="stat_products">Produk</p>
+        <h3 id="totalProducts">0</h3>
+        <span data-i18n="stat_products_desc">Produk tersimpan</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon orange">
+          <i data-lucide="triangle-alert"></i>
+        </div>
+
+        <p data-i18n="stat_low_stock">Stok Menipis</p>
+        <h3 id="lowStockProducts">0</h3>
+        <span data-i18n="stat_low_stock_desc">Perlu restock</span>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <h3 data-i18n="shortcut_title">Shortcut Cepat</h3>
+            <p data-i18n="shortcut_desc">Akses fitur utama Luxora POS.</p>
+          </div>
+        </div>
+
+        <div class="shortcut-grid">
+          <a href="kasir.html">
+            <i data-lucide="shopping-cart"></i>
+            <strong data-i18n="shortcut_cashier_title">Mulai Kasir</strong>
+            <span data-i18n="shortcut_cashier_desc">Buat transaksi baru</span>
+          </a>
+
+          <a href="produk.html">
+            <i data-lucide="package-plus"></i>
+            <strong data-i18n="shortcut_product_title">Tambah Produk</strong>
+            <span data-i18n="shortcut_product_desc">Kelola produk toko</span>
+          </a>
+
+          <a href="premium.html">
+            <i data-lucide="crown"></i>
+            <strong data-i18n="shortcut_premium_title">Upgrade Premium</strong>
+            <span data-i18n="shortcut_premium_desc">Buka fitur lengkap</span>
+          </a>
+
+          <a
+            href="https://wa.me/6285179972565?text=Halo%20RANEX%20Service%20saya%20butuh%20bantuan%20Luxora%20POS"
+            target="_blank"
+          >
+            <i data-lucide="headphones"></i>
+            <strong data-i18n="shortcut_help_title">Bantuan</strong>
+            <span data-i18n="shortcut_help_desc">Live chat RANEX Service</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <div>
+            <h3 data-i18n="activity_title">Aktivitas Terbaru</h3>
+            <p data-i18n="activity_desc">Ringkasan aktivitas sistem.</p>
+          </div>
+        </div>
+
+        <div class="activity-list" id="activityList">
+          <div class="activity-empty" data-i18n="activity_empty">
+            Belum ada aktivitas terbaru.
+          </div>
+        </div>
+      </article>
+    </section>
+      </main>
+
+  <div class="welcome-modal" id="welcomeModal">
+    <div class="welcome-card">
+      <button class="close-modal" id="closeWelcomeBtn" type="button">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="welcome-icon">
+        <i data-lucide="sparkles"></i>
+      </div>
+
+      <p class="eyebrow" data-i18n="welcome_modal_eyebrow">SELAMAT DATANG</p>
+
+      <h2 data-i18n="welcome_modal_title">
+        Selamat datang di Luxora POS
+      </h2>
+
+      <p class="welcome-text" data-i18n="welcome_modal_desc">
+        Nikmati pengalaman kasir modern untuk mengelola transaksi, produk, stok, dan laporan toko.
+      </p>
+
+      <div class="premium-preview">
+        <h3 data-i18n="premium_preview_title">Promo Paket Premium</h3>
+
+        <ul>
+          <li data-i18n="premium_feature_1">Multi kasir dan manajemen karyawan</li>
+          <li data-i18n="premium_feature_2">Laporan penjualan lengkap</li>
+          <li data-i18n="premium_feature_3">Export data transaksi</li>
+          <li data-i18n="premium_feature_4">Custom logo dan struk toko</li>
+        </ul>
+      </div>
+
+      <div class="welcome-actions">
+        <a href="premium.html" class="primary-btn">
+          <span data-i18n="see_more">Lihat Selengkapnya</span>
+          <i data-lucide="arrow-right"></i>
+        </a>
+
+        <button type="button" class="secondary-btn" id="laterBtn">
+          <span data-i18n="later">Nanti Saja</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

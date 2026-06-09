@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Daftar Akun - Luxora POS</title>
+  <meta name="description" content="Daftar akun Luxora POS untuk mulai menggunakan aplikasi kasir digital premium." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+  <div class="lux-bg"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="auth-page">
+    <section class="auth-card">
+      <a href="landing.html" class="brand auth-brand">
+        <img src="assets/luxora-logo.png" alt="Logo Luxora POS">
+        <span>Luxora POS</span>
+      </a>
+
+      <div class="auth-header">
+        <span class="badge"><span></span> Merchant Registration</span>
+        <h1>Buat Akun Bisnis Anda</h1>
+        <p>
+          Daftarkan bisnis Anda dan mulai kelola transaksi, produk, stok,
+          serta laporan penjualan dengan sistem kasir digital premium.
+        </p>
+      </div>
+
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="ownerName">Nama Pemilik</label>
+          <input type="text" id="ownerName" placeholder="Contoh: Ricky Andriansyah" required>
+        </div>
+
+        <div class="form-group">
+          <label for="businessName">Nama Bisnis / Toko</label>
+          <input type="text" id="businessName" placeholder="Contoh: Luxora Store" required>
+        </div>
+
+        <div class="form-group">
+          <label for="businessType">Jenis Bisnis</label>
+          <select id="businessType" required>
+            <option value="">Pilih jenis bisnis</option>
+            <option value="Toko Retail">Toko Retail</option>
+            <option value="Cafe">Cafe</option>
+            <option value="Restoran">Restoran</option>
+            <option value="Kedai">Kedai</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Minimarket">Minimarket</option>
+            <option value="Jasa">Jasa</option>
+            <option value="UMKM">UMKM</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Aktif</label>
+          <input type="email" id="email" placeholder="nama@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp">Nomor WhatsApp</label>
+          <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+        </div>
+
+        <div class="form-group password-group">
+          <label for="password">Password</label>
+          <div class="password-box">
+            <input type="password" id="password" placeholder="Minimal 6 karakter" required>
+            <button type="button" class="toggle-password" data-target="password">Lihat</button>
+          </div>
+        </div>
+
+        <div class="form-group password-group">
+          <label for="confirmPassword">Konfirmasi Password</label>
+          <div class="password-box">
+            <input type="password" id="confirmPassword" placeholder="Ulangi password" required>
+            <button type="button" class="toggle-password" data-target="confirmPassword">Lihat</button>
+          </div>
+        </div>
+
+        <label class="agree-box">
+          <input type="checkbox" id="agree" required>
+          <span>Saya menyetujui syarat penggunaan Luxora POS.</span>
+        </label>
+
+        <button type="submit" class="btn gold auth-submit">
+          Daftar Sekarang
+        </button>
+
+        <p class="auth-switch">
+          Sudah punya akun?
+          <a href="login.html">Masuk di sini</a>
+        </p>
+      </form>
+    </section>
+
+    <aside class="auth-side">
+      <div class="side-card">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <h2>Mulai kelola bisnis dengan lebih profesional.</h2>
+        <p>
+          Luxora POS membantu pemilik usaha mengatur transaksi harian,
+          produk, stok, dan laporan penjualan dalam satu sistem modern.
+        </p>
+
+        <div class="benefit-list">
+          <div>
+            <strong>✓</strong>
+            <span>Kasir digital modern</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Manajemen produk dan stok</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Laporan penjualan rapi</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Tampilan premium</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

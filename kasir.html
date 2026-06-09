@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kasir - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/kasir.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <main class="touch-pos">
+    <header class="pos-header">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <div>
+          <h1>Luxora POS</h1>
+          <p id="shiftTime">Memuat waktu...</p>
+        </div>
+      </a>
+
+      <div class="header-title">
+        <p>Touchscreen Terminal</p>
+        <h2>Kasir Penjualan</h2>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <a class="header-link" href="dashboard.html">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </a>
+
+        <a class="header-link" href="produk.html">
+          <i data-lucide="package-plus"></i>
+          Produk
+        </a>
+
+        <a
+          class="header-link help"
+          href="https://wa.me/6285179972565?text=Halo%20RANEX%20Service%20saya%20butuh%20bantuan%20Luxora%20POS"
+          target="_blank"
+        >
+          <i data-lucide="headphones"></i>
+          Bantuan
+        </a>
+      </div>
+    </header>
+
+    <section class="search-section">
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input id="searchProduct" type="text" placeholder="Cari produk nama kategori atau kode barcode">
+      </div>
+
+      <div class="barcode-box">
+        <i data-lucide="scan-barcode"></i>
+        <input id="barcodeInput" type="text" placeholder="Barcode">
+      </div>
+    </section>
+
+    <section class="category-section">
+      <button class="category-btn active" data-category="all" type="button">Semua</button>
+      <button class="category-btn" data-category="Minuman" type="button">Minuman</button>
+      <button class="category-btn" data-category="Makanan" type="button">Makanan</button>
+      <button class="category-btn" data-category="Snack" type="button">Snack</button>
+      <button class="category-btn" data-category="Fashion" type="button">Fashion</button>
+      <button class="category-btn" data-category="Retail" type="button">Retail</button>
+    </section>
+
+    <section class="product-section">
+      <div class="section-head">
+        <div>
+          <p>Product Library</p>
+          <h3>Daftar Produk</h3>
+        </div>
+
+        <span id="productCounter">0 Produk</span>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <div class="empty-product">
+          <i data-lucide="package-open"></i>
+          <h3>Belum ada produk</h3>
+          <p>Tambahkan produk terlebih dahulu dari halaman Produk untuk mulai transaksi.</p>
+          <a href="produk.html">Tambah Produk</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-cart">
+    <button class="mini-cart-btn" id="openCartBtn" type="button">
+      <div class="cart-icon">
+        <i data-lucide="shopping-bag"></i>
+        <span id="cartBadge">0</span>
+      </div>
+
+      <div>
+        <strong id="bottomTotal">Rp0</strong>
+        <small id="bottomItems">0 item di keranjang</small>
+      </div>
+    </button>
+
+    <button class="checkout-btn" id="openPaymentBtn" type="button">
+      <i data-lucide="credit-card"></i>
+      Bayar
+    </button>
+  </div>
+
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <div class="drawer-panel">
+      <div class="drawer-head">
+        <div>
+          <p>Current Order</p>
+          <h3>Keranjang</h3>
+        </div>
+
+        <button id="closeCartBtn" type="button">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="customer-grid">
+
+        <div class="field full">
+  <label>Kasir</label>
+  <div>
+    <i data-lucide="badge-user"></i>
+    <select id="cashierSelect"></select>
+  </div>
+</div>
+
+        <div class="field">
+          <label>Pelanggan</label>
+          <div>
+            <i data-lucide="user-round"></i>
+            <input id="customerName" type="text" placeholder="Umum">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>No Nota</label>
+          <div>
+            <i data-lucide="hash"></i>
+            <input id="noteNumber" type="text" readonly>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-list" id="cartItems">
+        <div class="cart-empty">
+          <i data-lucide="shopping-bag"></i>
+          <strong>Keranjang kosong</strong>
+          <span>Pilih produk untuk mulai transaksi.</span>
+        </div>
+      </div>
+
+      <div class="drawer-actions">
+        <button class="clear-btn" id="clearCartBtn" type="button">
+          <i data-lucide="trash-2"></i>
+          Kosongkan
+        </button>
+
+        <button class="drawer-pay-btn" id="drawerPaymentBtn" type="button">
+          Lanjut Bayar
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="payment-modal" id="paymentModal">
+    <div class="modal-backdrop" id="paymentBackdrop"></div>
+
+    <div class="payment-panel">
+      <button class="close-payment" id="closePaymentBtn" type="button">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="payment-head">
+        <p>Payment Summary</p>
+        <h3>Pembayaran</h3>
+      </div>
+
+      <div class="grand-total">
+        <span>Total Bayar</span>
+        <strong id="grandTotalText">Rp0</strong>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-row">
+          <span>Total Item</span>
+          <strong id="totalItemsText">0</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="subtotalText">Rp0</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Diskon</span>
+          <strong id="discountText">Rp0</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Pajak</span>
+          <strong id="taxText">Rp0</strong>
+        </div>
+      </div>
+
+      <div class="summary-inputs">
+        <label>
+          Diskon
+          <input id="manualDiscount" type="number" min="0" value="0">
+        </label>
+
+        <label>
+          Pajak %
+          <input id="taxPercent" type="number" min="0" value="0">
+        </label>
+      </div>
+
+      <div class="payment-methods" id="paymentMethods">
+        <button class="payment-method active" data-method="Tunai" type="button">
+          <i data-lucide="banknote"></i>
+          Tunai
+        </button>
+
+        <button class="payment-method" data-method="QRIS" type="button">
+          <i data-lucide="qr-code"></i>
+          QRIS
+        </button>
+
+        <button class="payment-method" data-method="Transfer" type="button">
+          <i data-lucide="credit-card"></i>
+          Transfer
+        </button>
+      </div>
+
+      <div class="paid-box">
+        <label>Uang Bayar</label>
+        <input id="paidAmount" type="number" min="0" placeholder="Masukkan nominal bayar">
+      </div>
+
+      <div class="change-box">
+        <span>Kembalian</span>
+        <strong id="changeText">Rp0</strong>
+      </div>
+
+      <button class="pay-btn" id="payBtn" type="button">
+        <i data-lucide="printer"></i>
+        Bayar & Cetak Struk
+      </button>
+    </div>
+  </div>
+
+  <div class="receipt-modal" id="receiptModal">
+    <div class="receipt-shell">
+      <button class="close-receipt" id="closeReceiptBtn" type="button">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="receipt-preview" id="receiptPreview"></div>
+
+      <div class="receipt-actions">
+        <button class="secondary-btn" id="backToCartBtn" type="button">Kembali</button>
+
+        <button class="print-btn" id="printReceiptBtn" type="button">
+          <i data-lucide="printer"></i>
+          Print Struk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="printArea"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/kasir.js"></script>
+</body>
+</html>

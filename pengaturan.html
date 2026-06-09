@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Pengaturan - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/pengaturan.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <main class="settings-page">
+    <header class="settings-header">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <div>
+          <h1>Luxora POS</h1>
+          <p>Settings Center</p>
+        </div>
+      </a>
+
+      <div class="header-title">
+        <p>System Settings</p>
+        <h2>Pengaturan Aplikasi</h2>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <a href="dashboard.html" class="header-link">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </a>
+
+        <a href="kasir.html" class="header-link">
+          <i data-lucide="shopping-cart"></i>
+          Kasir
+        </a>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">SETTINGS CENTER</p>
+        <h1>Atur toko struk pajak tampilan dan data aplikasi.</h1>
+        <span>
+          Semua pengaturan ini akan digunakan oleh kasir transaksi laporan dan struk thermal Luxora POS.
+        </span>
+      </div>
+
+      <button class="save-main-btn" id="saveSettingsTopBtn" type="button">
+        <i data-lucide="save"></i>
+        Simpan Pengaturan
+      </button>
+    </section>
+
+    <form id="settingsForm" class="settings-layout">
+
+      <!-- INFORMASI TOKO -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Store Profile</p>
+            <h3>Informasi Toko</h3>
+          </div>
+          <i data-lucide="store"></i>
+        </div>
+
+        <div class="store-logo-row">
+          <div class="store-logo-preview">
+            <img id="storeLogoPreview" src="assets/luxora-logo.png" alt="Logo Toko">
+          </div>
+
+          <div>
+            <h4>Logo Toko</h4>
+            <span>Logo ini akan tampil di dashboard dan struk jika diaktifkan.</span>
+
+            <label class="upload-btn">
+              <i data-lucide="upload"></i>
+              Upload Logo
+              <input id="storeLogoInput" type="file" accept="image/*">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Nama Toko</label>
+            <input id="storeName" type="text" placeholder="Contoh: Ranex Store">
+          </div>
+
+          <div class="input-group">
+            <label>Nama Pemilik</label>
+            <input id="ownerName" type="text" placeholder="Contoh: Ricky Andriansyah">
+          </div>
+
+          <div class="input-group">
+            <label>Email Toko</label>
+            <input id="storeEmail" type="email" placeholder="contoh@email.com">
+          </div>
+
+          <div class="input-group">
+            <label>WhatsApp Toko</label>
+            <input id="storeWhatsapp" type="text" placeholder="085179972565">
+          </div>
+
+          <div class="input-group">
+            <label>Website</label>
+            <input id="storeWebsite" type="text" placeholder="https://website-toko.com">
+          </div>
+
+          <div class="input-group">
+            <label>NPWP Opsional</label>
+            <input id="storeNpwp" type="text" placeholder="Nomor NPWP">
+          </div>
+
+          <div class="input-group full">
+            <label>Alamat Toko</label>
+            <textarea id="storeAddress" rows="3" placeholder="Alamat lengkap toko"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- PENGATURAN STRUK -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Receipt Setup</p>
+            <h3>Pengaturan Struk</h3>
+          </div>
+          <i data-lucide="receipt-text"></i>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Ukuran Struk</label>
+            <select id="receiptSize">
+              <option value="80mm">Thermal 80mm</option>
+              <option value="58mm">Thermal 58mm</option>
+              <option value="a4">A4 Printer Biasa</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Nama Kasir Default</label>
+            <input id="defaultCashier" type="text" placeholder="Kasir">
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <strong>Tampilkan Logo</strong>
+              <span>Logo toko tampil di atas struk.</span>
+            </div>
+            <label class="switch">
+              <input id="showLogo" type="checkbox" checked>
+              <span></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <strong>Tampilkan Kasir</strong>
+              <span>Nama kasir tercetak di struk.</span>
+            </div>
+            <label class="switch">
+              <input id="showCashier" type="checkbox" checked>
+              <span></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <strong>Tampilkan Pelanggan</strong>
+              <span>Nama pelanggan tercetak di struk.</span>
+            </div>
+            <label class="switch">
+              <input id="showCustomer" type="checkbox" checked>
+              <span></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <strong>Tampilkan Footer</strong>
+              <span>Catatan bawah struk aktif.</span>
+            </div>
+            <label class="switch">
+              <input id="showFooter" type="checkbox" checked>
+              <span></span>
+            </label>
+          </div>
+
+          <div class="input-group full">
+            <label>Footer Struk</label>
+            <textarea id="receiptFooter" rows="3" placeholder="Terima kasih sudah berbelanja"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAJAK DAN DISKON -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Tax Discount</p>
+            <h3>Pajak & Diskon</h3>
+          </div>
+          <i data-lucide="badge-percent"></i>
+        </div>
+
+        <div class="form-grid">
+          <div class="toggle-row">
+            <div>
+              <strong>Aktifkan Pajak</strong>
+              <span>Pajak otomatis masuk di kasir.</span>
+            </div>
+            <label class="switch">
+              <input id="taxEnabled" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="input-group">
+            <label>Pajak Default %</label>
+            <input id="defaultTax" type="number" min="0" value="0">
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <strong>Aktifkan Diskon Default</strong>
+              <span>Diskon otomatis muncul di kasir.</span>
+            </div>
+            <label class="switch">
+              <input id="discountEnabled" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="input-group">
+            <label>Diskon Default</label>
+            <input id="defaultDiscount" type="number" min="0" value="0">
+          </div>
+        </div>
+      </section>
+
+      <!-- TAMPILAN SISTEM -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Display System</p>
+            <h3>Tampilan & Sistem</h3>
+          </div>
+          <i data-lucide="monitor-cog"></i>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Tema Default</label>
+            <select id="defaultTheme">
+              <option value="dark">Gelap</option>
+              <option value="light">Terang</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Bahasa</label>
+            <select id="appLanguage">
+              <option value="id">Indonesia</option>
+              <option value="en">English</option>
+              <option value="zh">Mandarin</option>
+              <option value="ja">Japan</option>
+              <option value="ko">Korea</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Mata Uang</label>
+            <select id="currency">
+              <option value="IDR">Rupiah Indonesia IDR</option>
+              <option value="USD">US Dollar USD</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Zona Waktu</label>
+            <select id="timezone">
+              <option value="Asia/Jakarta">Asia Jakarta</option>
+              <option value="Asia/Makassar">Asia Makassar</option>
+              <option value="Asia/Jayapura">Asia Jayapura</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- BACKUP DATA -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Backup Restore</p>
+            <h3>Backup Data</h3>
+          </div>
+          <i data-lucide="database-backup"></i>
+        </div>
+
+        <div class="backup-actions">
+          <button id="exportDataBtn" type="button" class="secondary-btn">
+            <i data-lucide="download"></i>
+            Export Data
+          </button>
+
+          <label class="secondary-btn">
+            <i data-lucide="upload"></i>
+            Import Data
+            <input id="importDataInput" type="file" accept="application/json">
+          </label>
+
+          <button id="resetDataBtn" type="button" class="danger-btn">
+            <i data-lucide="trash-2"></i>
+            Reset Semua Data
+          </button>
+        </div>
+
+        <p class="hint">
+          Backup berisi produk transaksi karyawan dan pengaturan aplikasi.
+        </p>
+      </section>
+
+      <!-- KEAMANAN -->
+      <section class="settings-card">
+        <div class="card-head">
+          <div>
+            <p>Security</p>
+            <h3>Keamanan</h3>
+          </div>
+          <i data-lucide="shield-check"></i>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label>PIN Admin</label>
+            <input id="adminPin" type="password" maxlength="6" placeholder="123456">
+          </div>
+
+          <div class="input-group">
+            <label>Auto Logout</label>
+            <select id="autoLogout">
+              <option value="off">Nonaktif</option>
+              <option value="15">15 Menit</option>
+              <option value="30">30 Menit</option>
+              <option value="60">60 Menit</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREVIEW STRUK -->
+      <section class="settings-card preview-card">
+        <div class="card-head">
+          <div>
+            <p>Receipt Preview</p>
+            <h3>Preview Struk</h3>
+          </div>
+          <i data-lucide="printer"></i>
+        </div>
+
+        <div class="receipt-preview" id="receiptPreview">
+          <div class="receipt-center">
+            <img id="previewLogo" src="assets/luxora-logo.png" alt="Logo">
+            <h3 id="previewStoreName">Luxora Store</h3>
+            <p id="previewAddress">Alamat toko belum diatur</p>
+          </div>
+
+          <div class="receipt-line"></div>
+
+          <div class="receipt-row">
+            <span>No</span>
+            <strong>LX-000001</strong>
+          </div>
+
+          <div class="receipt-row">
+            <span>Kasir</span>
+            <strong id="previewCashier">Kasir</strong>
+          </div>
+
+          <div class="receipt-row">
+            <span>Pelanggan</span>
+            <strong>Umum</strong>
+          </div>
+
+          <div class="receipt-line"></div>
+
+          <div class="receipt-item">
+            <strong>Produk Contoh</strong>
+            <div class="receipt-row">
+              <span>1 x Rp25.000</span>
+              <strong>Rp25.000</strong>
+            </div>
+          </div>
+
+          <div class="receipt-line"></div>
+
+          <div class="receipt-row receipt-total">
+            <span>Total</span>
+            <strong>Rp25.000</strong>
+          </div>
+
+          <div class="receipt-line"></div>
+
+          <div class="receipt-footer" id="previewFooter">
+            Terima kasih sudah berbelanja
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="settings-card about-card">
+        <div class="card-head">
+          <div>
+            <p>About App</p>
+            <h3>Tentang Aplikasi</h3>
+          </div>
+          <i data-lucide="info"></i>
+        </div>
+
+        <div class="about-box">
+          <img src="assets/luxora-logo.png" alt="Luxora POS">
+          <h3>Luxora POS</h3>
+          <p>Version 1.0.0</p>
+          <span>Powered by Ranex Group</span>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button class="reset-btn" id="resetSettingsBtn" type="button">
+          <i data-lucide="rotate-ccw"></i>
+          Reset Pengaturan
+        </button>
+
+        <button class="save-btn" type="submit">
+          <i data-lucide="save"></i>
+          Simpan Pengaturan
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle"></i>
+    <span>Pengaturan berhasil disimpan.</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/pengaturan.js"></script>
+</body>
+</html>

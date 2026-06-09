@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Karyawan - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/karyawan.css">
+</head>
+<body>
+
+<div class="app-bg"></div>
+<div class="gold-orb"></div>
+
+<main class="employee-page">
+
+  <!-- HEADER -->
+
+  <header class="employee-header">
+
+    <a href="dashboard.html" class="brand">
+      <img src="assets/luxora-logo.png" alt="">
+      <div>
+        <h1>Luxora POS</h1>
+        <p>Employee Management</p>
+      </div>
+    </a>
+
+    <div class="header-title">
+      <p>Team Management</p>
+      <h2>Karyawan & Kasir</h2>
+    </div>
+
+    <div class="header-actions">
+
+      <button id="themeToggle" class="icon-btn">
+        <i data-lucide="moon"></i>
+      </button>
+
+      <a href="dashboard.html" class="header-link">
+        <i data-lucide="layout-dashboard"></i>
+        Dashboard
+      </a>
+
+      <button
+        id="openEmployeeModalBtn"
+        class="add-employee-btn"
+      >
+        <i data-lucide="user-plus"></i>
+        Tambah Karyawan
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero-card">
+
+    <div>
+
+      <p class="eyebrow">
+        TEAM MANAGEMENT
+      </p>
+
+      <h1>
+        Kelola seluruh kasir dan karyawan toko dalam satu tempat.
+      </h1>
+
+      <span>
+        Tambah kasir baru atur hak akses
+        aktifkan atau nonaktifkan akun
+        serta pantau siapa yang melakukan transaksi.
+      </span>
+
+    </div>
+
+    <button
+      id="heroAddEmployeeBtn"
+      class="hero-add-btn"
+    >
+      <i data-lucide="user-plus"></i>
+      Tambah Karyawan
+    </button>
+
+  </section>
+
+  <!-- STATS -->
+
+  <section class="stats-grid">
+
+    <article class="stat-card">
+
+      <div class="stat-icon gold">
+        <i data-lucide="users"></i>
+      </div>
+
+      <p>Total Karyawan</p>
+
+      <h3 id="totalEmployees">
+        0
+      </h3>
+
+    </article>
+
+    <article class="stat-card">
+
+      <div class="stat-icon green">
+        <i data-lucide="user-check"></i>
+      </div>
+
+      <p>Karyawan Aktif</p>
+
+      <h3 id="activeEmployees">
+        0
+      </h3>
+
+    </article>
+
+    <article class="stat-card">
+
+      <div class="stat-icon blue">
+        <i data-lucide="shield-check"></i>
+      </div>
+
+      <p>Admin</p>
+
+      <h3 id="adminCount">
+        0
+      </h3>
+
+    </article>
+
+    <article class="stat-card">
+
+      <div class="stat-icon red">
+        <i data-lucide="user-x"></i>
+      </div>
+
+      <p>Nonaktif</p>
+
+      <h3 id="inactiveEmployees">
+        0
+      </h3>
+
+    </article>
+
+  </section>
+
+  <!-- TOOLS -->
+
+  <section class="employee-tools">
+
+    <div class="search-box">
+
+      <i data-lucide="search"></i>
+
+      <input
+        id="employeeSearch"
+        type="text"
+        placeholder="Cari nama email nomor HP"
+      >
+
+    </div>
+
+    <select id="roleFilter">
+
+      <option value="all">
+        Semua Role
+      </option>
+
+      <option value="owner">
+        Owner
+      </option>
+
+      <option value="admin">
+        Admin
+      </option>
+
+      <option value="cashier">
+        Kasir
+      </option>
+
+    </select>
+
+    <select id="statusFilter">
+
+      <option value="all">
+        Semua Status
+      </option>
+
+      <option value="active">
+        Aktif
+      </option>
+
+      <option value="inactive">
+        Nonaktif
+      </option>
+
+    </select>
+
+  </section>
+
+  <!-- LIST -->
+
+  <section class="employee-panel">
+
+    <div class="panel-head">
+
+      <div>
+        <p>Employee List</p>
+        <h3>Daftar Karyawan</h3>
+      </div>
+
+      <span id="employeeCountText">
+        0 Karyawan
+      </span>
+
+    </div>
+
+    <div
+      id="employeeList"
+      class="employee-list"
+    >
+
+      <div class="empty-state">
+
+        <i data-lucide="users"></i>
+
+        <h3>
+          Belum ada karyawan
+        </h3>
+
+        <p>
+          Tambahkan kasir pertama untuk mulai menggunakan sistem multi user.
+        </p>
+
+        <button
+          id="emptyAddEmployeeBtn"
+        >
+          Tambah Karyawan
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- MODAL -->
+
+<div
+  id="employeeModal"
+  class="employee-modal"
+>
+
+  <div
+    id="modalBackdrop"
+    class="modal-backdrop"
+  ></div>
+
+  <form
+    id="employeeForm"
+    class="employee-form"
+  >
+
+    <button
+      id="closeEmployeeModalBtn"
+      class="close-modal"
+      type="button"
+    >
+      <i data-lucide="x"></i>
+    </button>
+
+    <div class="form-head">
+
+      <p>Employee Setup</p>
+
+      <h3 id="modalTitle">
+        Tambah Karyawan
+      </h3>
+
+    </div>
+
+    <input
+      id="employeeId"
+      type="hidden"
+    >
+
+    <div class="avatar-upload">
+
+      <div class="avatar-preview">
+
+        <img
+          id="employeePhotoPreview"
+          src="assets/default-avatar.png"
+          alt=""
+        >
+
+      </div>
+
+      <label class="upload-btn">
+
+        <i data-lucide="upload"></i>
+
+        Upload Foto
+
+        <input
+          id="employeePhotoInput"
+          type="file"
+          accept="image/*"
+        >
+
+      </label>
+
+    </div>
+
+    <div class="form-grid">
+
+      <div class="input-group">
+        <label>Nama Lengkap</label>
+        <input
+          id="employeeName"
+          type="text"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input
+          id="employeeEmail"
+          type="email"
+        >
+      </div>
+
+      <div class="input-group">
+        <label>No HP</label>
+        <input
+          id="employeePhone"
+          type="text"
+        >
+      </div>
+
+      <div class="input-group">
+        <label>PIN Login</label>
+        <input
+          id="employeePin"
+          type="password"
+          maxlength="6"
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Role</label>
+
+        <select id="employeeRole">
+
+          <option value="cashier">
+            Kasir
+          </option>
+
+          <option value="admin">
+            Admin
+          </option>
+
+          <option value="owner">
+            Owner
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="input-group">
+        <label>Status</label>
+
+        <select id="employeeStatus">
+
+          <option value="active">
+            Aktif
+          </option>
+
+          <option value="inactive">
+            Nonaktif
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="input-group full">
+        <label>Catatan</label>
+
+        <textarea
+          id="employeeNote"
+          rows="3"
+        ></textarea>
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+
+      <button
+        id="deleteEmployeeBtn"
+        class="delete-btn"
+        type="button"
+      >
+        Hapus
+      </button>
+
+      <button
+        id="cancelEmployeeBtn"
+        class="cancel-btn"
+        type="button"
+      >
+        Batal
+      </button>
+
+      <button
+        class="save-btn"
+        type="submit"
+      >
+        Simpan Karyawan
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/karyawan.js"></script>
+
+</body>
+</html>

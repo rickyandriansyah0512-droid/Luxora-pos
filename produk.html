@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Produk - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/produk.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <main class="product-page">
+    <header class="product-header">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <div>
+          <h1>Luxora POS</h1>
+          <p>Product Manager</p>
+        </div>
+      </a>
+
+      <div class="header-title">
+        <p>Inventory Control</p>
+        <h2>Manajemen Produk</h2>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <a href="dashboard.html" class="header-link">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </a>
+
+        <a href="kasir.html" class="header-link">
+          <i data-lucide="shopping-cart"></i>
+          Kasir
+        </a>
+
+        <button class="add-product-main" id="openProductModalBtn" type="button">
+          <i data-lucide="plus"></i>
+          Tambah Produk
+        </button>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">PRODUK TOKO</p>
+        <h1>Kelola produk toko dengan rapi dan profesional.</h1>
+        <span>
+          Tambah produk, atur harga, stok, kategori, status aktif, dan foto produk
+          agar kasir bisa langsung digunakan untuk transaksi.
+        </span>
+      </div>
+
+      <div class="hero-actions">
+        <button id="heroAddProductBtn" type="button">
+          <i data-lucide="package-plus"></i>
+          Tambah Produk
+        </button>
+
+        <a href="kasir.html">
+          <i data-lucide="shopping-cart"></i>
+          Buka Kasir
+        </a>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-icon gold">
+          <i data-lucide="package"></i>
+        </div>
+        <p>Total Produk</p>
+        <h3 id="totalProducts">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon green">
+          <i data-lucide="check-circle"></i>
+        </div>
+        <p>Produk Aktif</p>
+        <h3 id="activeProducts">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon red">
+          <i data-lucide="triangle-alert"></i>
+        </div>
+        <p>Stok Menipis</p>
+        <h3 id="lowStockProducts">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon blue">
+          <i data-lucide="wallet"></i>
+        </div>
+        <p>Nilai Stok</p>
+        <h3 id="stockValue">Rp0</h3>
+      </article>
+    </section>
+
+    <section class="product-tools">
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input id="searchProductInput" type="text" placeholder="Cari nama produk kode barcode kategori">
+      </div>
+
+      <select id="categoryFilter">
+        <option value="all">Semua Kategori</option>
+        <option value="Minuman">Minuman</option>
+        <option value="Makanan">Makanan</option>
+        <option value="Snack">Snack</option>
+        <option value="Fashion">Fashion</option>
+        <option value="Retail">Retail</option>
+        <option value="Jasa">Jasa</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+
+      <select id="statusFilter">
+        <option value="all">Semua Status</option>
+        <option value="active">Aktif</option>
+        <option value="inactive">Nonaktif</option>
+      </select>
+    </section>
+
+    <section class="product-panel">
+      <div class="panel-head">
+        <div>
+          <p>Product List</p>
+          <h3>Daftar Produk</h3>
+        </div>
+
+        <span id="productCountText">0 Produk</span>
+      </div>
+
+      <div class="product-list" id="productList">
+        <div class="empty-state">
+          <i data-lucide="package-open"></i>
+          <h3>Belum ada produk</h3>
+          <p>Tambahkan produk pertama agar halaman kasir bisa digunakan.</p>
+          <button id="emptyAddProductBtn" type="button">Tambah Produk</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="product-modal" id="productModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <form class="product-form" id="productForm">
+      <button class="close-modal" id="closeProductModalBtn" type="button">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div class="form-head">
+        <p>Product Setup</p>
+        <h3 id="modalTitle">Tambah Produk</h3>
+        <span>Lengkapi data produk untuk ditampilkan di kasir.</span>
+      </div>
+
+      <input type="hidden" id="productId">
+
+      <div class="upload-box">
+        <div class="image-preview" id="imagePreview">
+          <img id="productImagePreview" src="assets/luxora-logo.png" alt="Preview Produk">
+        </div>
+
+        <div>
+          <h4>Foto Produk</h4>
+          <p>Upload foto agar produk terlihat menarik di kasir.</p>
+
+          <label class="upload-btn">
+            <i data-lucide="upload"></i>
+            Pilih Foto
+            <input id="productImageInput" type="file" accept="image/*">
+          </label>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Nama Produk</label>
+          <input id="productName" type="text" placeholder="Contoh: Teh Pucuk 350ml" required>
+        </div>
+
+        <div class="input-group">
+          <label>Kategori</label>
+          <select id="productCategory">
+            <option value="Minuman">Minuman</option>
+            <option value="Makanan">Makanan</option>
+            <option value="Snack">Snack</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Retail">Retail</option>
+            <option value="Jasa">Jasa</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Kode / Barcode</label>
+          <div class="input-action">
+            <input id="productCode" type="text" placeholder="Auto">
+            <button id="generateCodeBtn" type="button">
+              <i data-lucide="refresh-cw"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Jenis Produk</label>
+          <select id="productType">
+            <option value="fisik">Produk Fisik</option>
+            <option value="jasa">Jasa / Layanan</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Harga Modal</label>
+          <input id="productCost" type="number" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+          <label>Harga Jual</label>
+          <input id="productPrice" type="number" min="0" value="0" required>
+        </div>
+
+        <div class="input-group">
+          <label>Stok</label>
+          <input id="productStock" type="number" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+          <label>Stok Minimum</label>
+          <input id="productMinStock" type="number" min="0" value="3">
+        </div>
+
+        <div class="input-group full">
+          <label>Deskripsi Produk</label>
+          <textarea id="productDescription" rows="3" placeholder="Catatan tambahan produk"></textarea>
+        </div>
+
+        <div class="input-group">
+          <label>Status Produk</label>
+          <select id="productStatus">
+            <option value="active">Aktif</option>
+            <option value="inactive">Nonaktif</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="delete-btn" id="deleteProductBtn" type="button">
+          <i data-lucide="trash-2"></i>
+          Hapus
+        </button>
+
+        <button class="cancel-btn" id="cancelProductBtn" type="button">
+          Batal
+        </button>
+
+        <button class="save-btn" type="submit">
+          <i data-lucide="save"></i>
+          Simpan Produk
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle"></i>
+    <span>Produk berhasil disimpan.</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/produk.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Laporan - Luxora POS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/laporan.css">
+</head>
+
+<body>
+  <div class="app-bg"></div>
+  <div class="gold-orb"></div>
+
+  <main class="report-page">
+    <header class="report-header">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+        <div>
+          <h1>Luxora POS</h1>
+          <p>Report Center</p>
+        </div>
+      </a>
+
+      <div class="header-title">
+        <p>Business Report</p>
+        <h2>Laporan Penjualan</h2>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" type="button">
+          <i data-lucide="moon"></i>
+        </button>
+
+        <a href="dashboard.html" class="header-link">
+          <i data-lucide="layout-dashboard"></i>
+          Dashboard
+        </a>
+
+        <a href="transaksi.html" class="header-link">
+          <i data-lucide="receipt-text"></i>
+          Transaksi
+        </a>
+
+        <button class="export-btn" id="printReportBtn" type="button">
+          <i data-lucide="printer"></i>
+          Print
+        </button>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">REPORT CENTER</p>
+        <h1>Analisis penjualan toko secara cepat dan rapi.</h1>
+        <span>
+          Pantau omzet, transaksi, item terjual, produk terlaris, kasir terbaik,
+          dan metode pembayaran dari seluruh data transaksi kasir.
+        </span>
+      </div>
+
+      <button class="hero-btn" id="exportCsvBtn" type="button">
+        <i data-lucide="download"></i>
+        Export CSV
+      </button>
+    </section>
+
+    <section class="filter-card">
+      <div class="filter-title">
+        <p>Filter Periode</p>
+        <h3>Pilih rentang laporan</h3>
+      </div>
+
+      <div class="filter-actions">
+        <button class="period-btn active" data-period="today" type="button">Hari Ini</button>
+        <button class="period-btn" data-period="7days" type="button">7 Hari</button>
+        <button class="period-btn" data-period="month" type="button">Bulan Ini</button>
+        <button class="period-btn" data-period="all" type="button">Semua</button>
+      </div>
+
+      <div class="custom-date">
+        <label>
+          Dari
+          <input id="startDate" type="date">
+        </label>
+
+        <label>
+          Sampai
+          <input id="endDate" type="date">
+        </label>
+
+        <button id="applyDateBtn" type="button">
+          Terapkan
+        </button>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-icon gold">
+          <i data-lucide="wallet"></i>
+        </div>
+        <p>Total Omzet</p>
+        <h3 id="totalRevenue">Rp0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon green">
+          <i data-lucide="receipt-text"></i>
+        </div>
+        <p>Total Transaksi</p>
+        <h3 id="totalTransactions">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon blue">
+          <i data-lucide="package-check"></i>
+        </div>
+        <p>Item Terjual</p>
+        <h3 id="itemsSold">0</h3>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon purple">
+          <i data-lucide="trending-up"></i>
+        </div>
+        <p>Rata-rata Transaksi</p>
+        <h3 id="averageTransaction">Rp0</h3>
+      </article>
+    </section>
+
+    <section class="insight-grid">
+      <article class="insight-card">
+        <div class="panel-head">
+          <div>
+            <p>Top Products</p>
+            <h3>Produk Terlaris</h3>
+          </div>
+        </div>
+
+        <div class="rank-list" id="topProductsList">
+          <div class="empty-mini">Belum ada data produk.</div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="panel-head">
+          <div>
+            <p>Top Cashier</p>
+            <h3>Kasir Terbaik</h3>
+          </div>
+        </div>
+
+        <div class="rank-list" id="topCashiersList">
+          <div class="empty-mini">Belum ada data kasir.</div>
+        </div>
+      </article>
+
+      <article class="insight-card">
+        <div class="panel-head">
+          <div>
+            <p>Payment Method</p>
+            <h3>Metode Pembayaran</h3>
+          </div>
+        </div>
+
+        <div class="rank-list" id="paymentMethodList">
+          <div class="empty-mini">Belum ada data pembayaran.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="report-panel">
+      <div class="panel-head">
+        <div>
+          <p>Daily Report</p>
+          <h3>Ringkasan Harian</h3>
+        </div>
+
+        <span id="reportCountText">0 Hari</span>
+      </div>
+
+      <div class="report-table" id="reportTable">
+        <div class="empty-state">
+          <i data-lucide="bar-chart-3"></i>
+          <h3>Belum ada laporan</h3>
+          <p>Data laporan akan muncul setelah ada transaksi dari halaman kasir.</p>
+          <a href="kasir.html">Buka Kasir</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="printArea"></div>
+
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle"></i>
+    <span>Berhasil.</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/laporan.js"></script>
+</body>
+</html>

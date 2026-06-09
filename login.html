@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Masuk Akun - Luxora POS</title>
+  <meta name="description" content="Masuk ke akun Luxora POS untuk mengelola transaksi, produk, stok, dan laporan penjualan bisnis Anda." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="assets/luxora-logo.png">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+  <div class="lux-bg"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="auth-page login-page">
+    <section class="auth-card login-card">
+      <a href="landing.html" class="brand auth-brand">
+        <img src="assets/luxora-logo.png" alt="Logo Luxora POS">
+        <span>Luxora POS</span>
+      </a>
+
+      <div class="auth-header">
+        <span class="badge"><span></span> Secure Login</span>
+        <h1>Masuk ke Akun Anda</h1>
+        <p>
+          Akses dashboard Luxora POS untuk mengelola transaksi, produk,
+          stok, dan laporan penjualan bisnis Anda.
+        </p>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label for="email">Email Akun</label>
+          <input type="email" id="email" placeholder="nama@email.com" required>
+        </div>
+
+        <div class="form-group password-group">
+          <label for="password">Password</label>
+          <div class="password-box">
+            <input type="password" id="password" placeholder="Masukkan password" required>
+            <button type="button" class="toggle-password" data-target="password">Lihat</button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-box">
+            <input type="checkbox" id="remember">
+            <span>Ingat saya</span>
+          </label>
+
+          <a href="#" class="forgot-link">Lupa password?</a>
+        </div>
+
+        <button type="submit" class="btn gold auth-submit">
+          Masuk Sekarang
+        </button>
+
+        <p class="auth-switch">
+          Belum punya akun?
+          <a href="register.html">Daftar sekarang</a>
+        </p>
+      </form>
+    </section>
+
+    <aside class="auth-side">
+      <div class="side-card login-side-card">
+        <img src="assets/luxora-logo.png" alt="Luxora POS">
+
+        <h2>Satu dashboard untuk mengelola bisnis lebih profesional.</h2>
+
+        <p>
+          Pantau aktivitas bisnis, transaksi harian, data produk,
+          stok barang, dan laporan penjualan dalam satu sistem kasir digital.
+        </p>
+
+        <div class="benefit-list">
+          <div>
+            <strong>✓</strong>
+            <span>Akses dashboard bisnis</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Kelola transaksi penjualan</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Pantau produk dan stok</span>
+          </div>
+          <div>
+            <strong>✓</strong>
+            <span>Laporan penjualan lebih rapi</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
